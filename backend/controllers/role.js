@@ -18,4 +18,13 @@ const registerRole = async (req, res) => {
   return res.status(200).send({ result });
 };
 
-export default { registerRole };
+//Es para hacer las consultas.
+const listRole = async (req, res) =>{
+  const roleSchema = await role.find();
+  if(!roleSchema || roleSchema.length ==0) return res.status(400).send("Empty role list");
+  return res.status(200).send({roleSchema});
+
+  //return !roleSchema || roleSchema.length==0 ? res.status(400).send("Empty role list") : res.status(200).send({roleSchema}); //Operador contrario para consultar 
+}
+
+export default { registerRole, listRole };
